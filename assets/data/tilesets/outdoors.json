@@ -1,0 +1,16 @@
+[ {
+    "name": "grass",
+    "data": 0
+}, {
+    "name": "path",
+    "data": 0
+}, {
+    "name": "thicket",
+    "data": 0
+}, {
+    "name": "forest",
+    "data": 0
+}, {
+    "name": "mountain",
+    "data": 0
+} ]

@@ -1,0 +1,50 @@
+{
+    "name": "Josias",
+    "gender": "m",
+    "age": 17,
+    "nationality": "Raudona",
+    "class": "lord",
+    "exp": 0,
+    "base": {
+        "hp": 18,
+        "str": 0,
+        "mag": 6,
+        "skl": 6,
+        "spd": 7,
+        "lck": 5,
+        "def": 2,
+        "res": 8,
+        "con": 7,
+        "mov": 6
+    },
+    "growths": {
+        "hp": 0.7,
+        "str": 0.2,
+        "mag": 0.6,
+        "skl": 0.4,
+        "spd": 0.45,
+        "lck": 0.55,
+        "def": 0.2,
+        "res": 0.45,
+        "con": 0,
+        "mov": 0
+    },
+    "bonuscaps": {
+        "hp": 0,
+        "str": 0,
+        "mag": 3,
+        "skl": 0,
+        "spd": 0,
+        "lck": 1,
+        "def": 0,
+        "res": 1,
+        "con": 0,
+        "mov": 0
+    },
+    "personalskill": "leadership",
+    "skills": [],
+    "weaponranks": [ {
+        "weapon": 247,
+        "rank": 4
+    } ]
+}
