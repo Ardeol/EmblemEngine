@@ -9,7 +9,7 @@ import flixel.util.FlxMath;
 
 /** FePlayState Class
  *  @author  Timothy Foster
- *  @version A.00
+ *  @version A.00.150729
  *
  *  **************************************************************************/
 class FePlayState extends FlxState {
@@ -18,7 +18,8 @@ class FePlayState extends FlxState {
  *  =========================================================================*/
     override public function create():Void {
 		super.create();
-        
+        var map = FeReader.readMap("assets/data/chapters/03/map.json");
+        add(map);
 	}
 
 	override public function destroy():Void {

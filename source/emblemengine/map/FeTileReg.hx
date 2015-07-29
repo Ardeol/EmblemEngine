@@ -1,5 +1,6 @@
 package emblemengine.map;
 
+import emblemengine.core.FeAnimations;
 import emblemengine.error.FeNotFoundError;
 import emblemengine.map.tiles.*;
 
@@ -11,16 +12,37 @@ import emblemengine.map.tiles.*;
  *  **************************************************************************/
 class FeTileReg {
     private static var registry:Map< String, Class<FeTile> >;
+    private static var initialized:Bool = false;
     
+/**
+ *  Initializes the tile registry.
+ */
     public static function init():Void {
-        registry = new Map< String, Class<FeTile> >();
-        registry.set(FeGrassTile.REG_NAME, FeGrassTile);
-        registry.set(FeFloorTile.REG_NAME, FeFloorTile);
+        if(!initialized) {
+            registry = new Map< String, Class<FeTile> >();
+            registry.set(FeGrassTile.REG_NAME, FeGrassTile);
+            registry.set(FeFloorTile.REG_NAME, FeFloorTile);
+            
+        //  @TMP
+            registry.set("path", FeGrassTile);
+            registry.set("thicket", FeGrassTile);
+            registry.set("forest", FeGrassTile);
+            registry.set("mountain", FeGrassTile);
+            
+            initialized = true;
+        }
     }
     
-    public static function create(tile:String, data:Dynamic):FeTile {
+/**
+ *  Creates a single tile based on the given string id.  Animations and data must also be provided.
+ *  @param tile A string ID that identifies the tile type to create
+ *  @param anims List of animations to be loaded onto the tile
+ *  @param data Arbitrary data needed for the tile in question
+ *  @return An FeTile that is of the appropriate type
+ */
+    public static function create(tile:String, anims:FeAnimations, data:Dynamic):FeTile {
         if (!registry.exists(tile))
             throw new FeNotFoundError('in FeTileReg create, searched for $tile');
-        return Type.createInstance(registry.get(tile), [data]);
+        return Type.createInstance(registry.get(tile), [anims, data]);
     }
 }

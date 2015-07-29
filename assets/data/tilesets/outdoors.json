@@ -1,16 +1,31 @@
 [ {
     "name": "grass",
-    "data": 0
+    "idle": [ [65] ],
+    "anims": [],
+    "data": {}
 }, {
     "name": "path",
-    "data": 0
+    "idle": [
+        [400],
+        [401], [402], [434], [433],
+        [197], [198], [230], [229],
+        [269], [270]
+    ],
+    "anims": [],
+    "data": {}
 }, {
     "name": "thicket",
-    "data": 0
+    "idle": [ [719] ],
+    "anims": [],
+    "data": {}
 }, {
     "name": "forest",
-    "data": 0
+    "idle": [ [720] ],
+    "anims": [],
+    "data": {}
 }, {
     "name": "mountain",
-    "data": 0
+    "idle": [ [678], [591], [527] ],
+    "anims": [],
+    "data": {}
 } ]

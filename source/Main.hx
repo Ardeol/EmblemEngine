@@ -29,11 +29,8 @@ class Main extends Sprite
 	
 	public static function main():Void
 	{	
-		//Lib.current.addChild(new Main());
         FeTileReg.init();
-        var x = FeReader.loadTileSet("assets/data/tilesets/dev.json");
-        var t = FeTileReg.create(x[0].name, x[1].data);
-        trace(t.toString());
+		Lib.current.addChild(new Main());
 	}
 	
 	public function new() 

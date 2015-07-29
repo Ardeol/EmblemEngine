@@ -1,6 +1,7 @@
 package emblemengine.map.tiles;
 
 import emblemengine.map.FeTile;
+import emblemengine.core.FeAnimations;
 
 /** FeFloorTile Class
  *  @author  Timothy Foster
@@ -12,8 +13,8 @@ class FeFloorTile extends FeTile {
 
 /*  Constructor
  *  =========================================================================*/
-    public function new(data:Dynamic) {
-        super();
+    public function new(anims:FeAnimations, data:Dynamic) {
+        super(data.tilesheet, anims);
     }
     
 /*  Class Methods
