@@ -4,11 +4,10 @@ import emblemengine.error.FeParserError;
 
 /** FeParams Class
  *  @author  Timothy Foster
- *  @version A.00
+ *  @version A.00.150730
  *
+ *  
  *  **************************************************************************/
-/*
-@:forward(keys)
 abstract FeParams(Map<String, FeParamSection>) from Map<String, FeParamSection> {
     public inline function new() {
         this = new Map<String, FeParamSection>();
@@ -29,7 +28,7 @@ abstract FeParams(Map<String, FeParamSection>) from Map<String, FeParamSection> 
             if (commentPattern.match(line))
                 continue;
             else if (sectionPattern.match(line)) {
-                var sectionName = sectionPattern.matched(1).toLowerCase();
+                var sectionName = sectionPattern.matched(1);
                 if (!params.exists(sectionName)) {
                     curSection = new FeParamSection();
                     params.set(sectionName, curSection);
@@ -49,17 +48,25 @@ abstract FeParams(Map<String, FeParamSection>) from Map<String, FeParamSection> 
         return params;
     }
     
-    public function get<T>(param:String):T {
+    public function get(param:String):String {
         var i = param.indexOf(".");
         if (i < 0)
-            return cast(section("").get(param), T);
+            return section("").get(param);
         else 
-            return cast(section(param.substr(0, i)).get(param.substr(i + 1)),T);
+            return section(param.substr(0, i)).get(param.substr(i + 1));
     }
+	
+	public inline function int(param:String):Int
+	    return Std.parseInt(get(param));
+	
+	public inline function float(param:String):Float
+	    return Std.parseFloat(get(param));
     
-    public inline function section(name:String):FeParamSection {
-        return this.get(name.toLowerCase());
-    }
+    public inline function section(name:String):FeParamSection
+        return this.get(name);
+		
+	public inline function keys():Iterator<FeParamSection>
+		return this.keys();
     
     public function toString():String {
         var s = new StringBuf();
@@ -81,16 +88,12 @@ abstract FeParams(Map<String, FeParamSection>) from Map<String, FeParamSection> 
 
 @:forward(keys)
 abstract FeParamSection(Map<String, String>) {
-    public inline function new() {
+    public inline function new()
         this = new Map<String, String>();
-    }
     
-    public inline function get(param:String):String {
-        return this.get(param.toLowerCase());
-    }
+    public inline function get(param:String):String
+        return this.get(param);
     
-    public inline function set(param:String, value:String):Void {
-        this.set(param.toLowerCase(), value);
-    }
+    public inline function set(param:String, value:String):Void
+        this.set(param, value);
 }
-*/

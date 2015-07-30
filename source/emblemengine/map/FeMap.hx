@@ -33,8 +33,8 @@ class FeMap extends FlxTypedSpriteGroup<FeTile> {
         var map = new FeMap();
         var i:Int = 0;
         for (tile in tiles) {
-            tile.x = FeC.TILE_PIXEL_WIDTH * (i % width);
-            tile.y = FeG.params.get("DIMENSIONS.tilePixelHeight") * Math.floor(i / width);
+            tile.x = FeG.params.int("DIMENSIONS.tilePixelWidth") * (i % width);
+            tile.y = FeG.params.int("DIMENSIONS.tilePixelHeight") * Math.floor(i / width);
             map.add(tile);
             ++i;
         }
