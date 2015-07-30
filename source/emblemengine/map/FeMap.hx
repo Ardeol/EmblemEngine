@@ -4,7 +4,8 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxTypedSpriteGroup;
 
-import emblemengine.core.FeParams;
+import emblemengine.FeG;
+import emblemengine.FeC;
 
 /** FeMap Class
  *  @author  Timothy Foster
@@ -32,8 +33,8 @@ class FeMap extends FlxTypedSpriteGroup<FeTile> {
         var map = new FeMap();
         var i:Int = 0;
         for (tile in tiles) {
-            tile.x = FeParams.TILE_PIXEL_WIDTH * (i % width);
-            tile.y = FeParams.TILE_PIXEL_HEIGHT * Math.floor(i / width);
+            tile.x = FeC.TILE_PIXEL_WIDTH * (i % width);
+            tile.y = FeG.params.get("DIMENSIONS.tilePixelHeight") * Math.floor(i / width);
             map.add(tile);
             ++i;
         }

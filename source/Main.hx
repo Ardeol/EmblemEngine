@@ -1,6 +1,5 @@
 package;
 
-import emblemengine.unit.FeAttributes;
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
@@ -9,16 +8,13 @@ import flash.Lib;
 import flixel.FlxGame;
 import flixel.FlxState;
 
+import emblemengine.FeG;
 import emblemengine.core.FePlayState;
-import emblemengine.unit.FeAttributes;
-import emblemengine.map.FeTileReg;
-import emblemengine.map.tiles.FeFloorTile;
-import emblemengine.core.FeReader;
 
 class Main extends Sprite 
 {
-	var gameWidth:Int = 640; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var gameHeight:Int = 480; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var gameWidth:Int = 320; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var gameHeight:Int = 240; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = FePlayState; // The FlxState the game starts with.
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 	var framerate:Int = 60; // How many frames per second the game should run at.
@@ -29,7 +25,6 @@ class Main extends Sprite
 	
 	public static function main():Void
 	{	
-        FeTileReg.init();
 		Lib.current.addChild(new Main());
 	}
 	
@@ -59,6 +54,8 @@ class Main extends Sprite
 	
 	private function setupGame():Void
 	{
+        FeG.init();
+        
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 

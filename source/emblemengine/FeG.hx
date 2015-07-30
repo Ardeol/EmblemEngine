@@ -1,25 +1,31 @@
-package emblemengine.map;
+package emblemengine;
 
-import flixel.FlxSprite;
+import openfl.Assets;
 
-import emblemengine.FeG;
-import emblemengine.core.FeAnimations;
+//import emblemengine.core.FeParams;
+import emblemengine.map.FeTileReg;
 
-/** FeTile Class
+/** FeG Class
  *  @author  Timothy Foster
- *  @version A.00.150729
+ *  @version A.00
  *
  *  **************************************************************************/
-class FeTile extends FlxSprite {
+class FeG {
+//    public static var params(default, null):FeParams;
 
-/*  Constructor
+/*  Initialization
  *  =========================================================================*/
-    public function new(tilesheetPath:String, anims:FeAnimations) {
-        super();
-        this.loadGraphic(tilesheetPath, true, FeG.params.get("DIMENSIONS.tilePixelWidth"), FeG.params.get("DIMENSIONS.tilePixelHeight"));
-        
-        for (anim in anims)
-            animation.add(anim.name, anim.frames, 30, anim.looped);
+    public static function init():Void {
+        FeTileReg.init();
+    /*  
+        try {
+            params = FeParams.parse(Assets.getText("assets/data/params.ini"));
+            trace(params);
+        }
+        catch (err:Dynamic) {
+            params = FeParams.parse(FeParams.FALLBACK_PARAMS);
+        }
+    */
     }
     
 /*  Class Methods
@@ -28,9 +34,7 @@ class FeTile extends FlxSprite {
  
 /*  Public Methods
  *  =========================================================================*/
-    override public function toString():String {
-        return "Tile";
-    }
+    
  
 /*  Private Members
  *  =========================================================================*/
