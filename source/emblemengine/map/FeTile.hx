@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 
 import emblemengine.FeG;
 import emblemengine.core.FeAnimations;
+import emblemengine.unit.FeUnitType;
 
 /** FeTile Class
  *  @author  Timothy Foster
@@ -16,7 +17,7 @@ class FeTile extends FlxSprite {
  *  =========================================================================*/
     public function new(tilesheetPath:String, anims:FeAnimations) {
         super();
-        this.loadGraphic(tilesheetPath, true, FeG.params.get("DIMENSIONS.tilePixelWidth"), FeG.params.get("DIMENSIONS.tilePixelHeight"));
+        this.loadGraphic(tilesheetPath, true, FeG.params.int("DIMENSIONS.tilePixelWidth"), FeG.params.int("DIMENSIONS.tilePixelHeight"));
         
         for (anim in anims)
             animation.add(anim.name, anim.frames, 30, anim.looped);
@@ -26,10 +27,30 @@ class FeTile extends FlxSprite {
  *  =========================================================================*/
     
  
+/*  Tile Properties
+ *  =========================================================================*/
+    public function name():String
+        return "UNNAMED TILE";
+        
+    public function def(?type:FeUnitType):Int
+        return 0;
+    
+    public function avoid(?type:FeUnitType):Int
+        return 0;
+    
+    public function hit(?type:FeUnitType):Int
+        return 0;
+    
+    public function moveCost(type:FeUnitType):Float
+        return 1.0;
+        
+    public function blocksProjectiles():Bool
+        return false;
+ 
 /*  Public Methods
  *  =========================================================================*/
     override public function toString():String {
-        return "Tile";
+        return name();
     }
  
 /*  Private Members
@@ -38,5 +59,4 @@ class FeTile extends FlxSprite {
  
 /*  Private Methods
  *  =========================================================================*/
-    
 }

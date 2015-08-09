@@ -8,8 +8,8 @@ import emblemengine.core.FeAnimations;
  *  @version A.00
  *
  *  **************************************************************************/
-class FeGrassTile extends FeTile {
-    public static inline var REG_NAME = "grass";
+class FePathTile extends FeTile {
+    public static inline var REG_NAME = "path";
 
 /*  Constructor
  *  =========================================================================*/
@@ -23,7 +23,7 @@ class FeGrassTile extends FeTile {
 /*  Tile Properties
  *  =========================================================================*/
     override public function name():String
-        return "Field";
+        return "Path";
  
 /*  Public Methods
  *  =========================================================================*/

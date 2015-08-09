@@ -4,37 +4,41 @@ import emblemengine.error.FeParserError;
 
 /** FeParams Class
  *  @author  Timothy Foster
- *  @version A.00.150730
+ *  @version A.00.150805
  *
- *  
+ *  Reads custom data in from an ini file.  This class is to be used like
+ *  regular constants, except the game can be freely modded as desired.
+ * 
+ *  If performance becomes an issue, it is possible to move things to the
+ *  FeC class.  But as these values are used for initializations, it should
+ *  not be an issue.
  *  **************************************************************************/
-abstract FeParams(Map<String, FeParamSection>) from Map<String, FeParamSection> {
-    public inline function new() {
-        this = new Map<String, FeParamSection>();
-        this.set("", new FeParamSection());
+class FeParams {
+    private var sections:Map<String, FeParamSection>;
+    
+    public function new() {
+        sections = new Map<String, FeParamSection>();
+        sections.set("", new FeParamSection());
     }
     
-    public static function parse(txt:String):FeParams {
-        var params = new Map<String, FeParamSection>();
-        
+    public function parse(txt:String):Void {
         var commentPattern = ~/^\s*[;#!]/;
         var sectionPattern = ~/^\s*\[\s*([^\]]*)\s*\]/;
         var valuePattern   = ~/^\s*([\w\.\-_]+)\s*[=:]\s*(.*)/;
-        
-        params.set("", new FeParamSection());
-        var curSection = params.get("");
+
+        var curSection = sections.get("");
         var lines = ~/\r\n|\r|\n/g.split(txt);
         for (line in lines) {
             if (commentPattern.match(line))
                 continue;
             else if (sectionPattern.match(line)) {
                 var sectionName = sectionPattern.matched(1);
-                if (!params.exists(sectionName)) {
+                if (!sections.exists(sectionName)) {
                     curSection = new FeParamSection();
-                    params.set(sectionName, curSection);
+                    sections.set(sectionName, curSection);
                 }
                 else
-                    curSection = params.get(sectionName);
+                    curSection = sections.get(sectionName);
             }
             else if (valuePattern.match(line)) {
                 var param = valuePattern.matched(1);
@@ -44,9 +48,10 @@ abstract FeParams(Map<String, FeParamSection>) from Map<String, FeParamSection> 
         //    else 
         //        throw new FeParserError("text file", ".ini is formatted incorrectly");
         }
-        
-        return params;
     }
+    
+    public inline function section(name:String):FeParamSection
+        return sections.get(name);
     
     public function get(param:String):String {
         var i = param.indexOf(".");
@@ -55,45 +60,32 @@ abstract FeParams(Map<String, FeParamSection>) from Map<String, FeParamSection> 
         else 
             return section(param.substr(0, i)).get(param.substr(i + 1));
     }
-	
-	public inline function int(param:String):Int
+    
+    public inline function int(param:String):Int
 	    return Std.parseInt(get(param));
 	
 	public inline function float(param:String):Float
 	    return Std.parseFloat(get(param));
-    
-    public inline function section(name:String):FeParamSection
-        return this.get(name);
-		
-	public inline function keys():Iterator<FeParamSection>
-		return this.keys();
+        
+    public inline function bool(param:String):Bool
+        return cast int(param);
     
     public function toString():String {
         var s = new StringBuf();
         for (param in section("").keys())
             s.add('$param=${section("").get(param)}\n');
-        for (sec in keys()) {
+        for (sec in sections.keys()) {
             if (sec == "")
                 continue;
             sec = sec.toUpperCase();
             s.add('\n[$sec]\n');
             for (param in section(sec).keys())
-                s.add('$param=${section("").get(param)}\n');
+                s.add('$param=${section(sec).get(param)}\n');
         }
         return s.toString();
     }
-    
+        
     public static inline var FALLBACK_PARAMS = "[UNITS]\nexpToProgress=100\nlevelToPromote=20\n[DIMENSIONS]\ntilePixelWidth=16 \ntilePixelHeight=16\n[ASSETS]\nassetPath=assets\nchapterPath=data/chapters";
 }
-
-@:forward(keys)
-abstract FeParamSection(Map<String, String>) {
-    public inline function new()
-        this = new Map<String, String>();
-    
-    public inline function get(param:String):String
-        return this.get(param);
-    
-    public inline function set(param:String, value:String):Void
-        this.set(param, value);
-}
+ 
+typedef FeParamSection = Map<String, String>

@@ -1,15 +1,17 @@
 package emblemengine.map.tiles;
 
+import emblemengine.FeC;
 import emblemengine.map.FeTile;
 import emblemengine.core.FeAnimations;
+import emblemengine.unit.FeUnitType;
 
-/** FeGrassTile Class
+/** FeThicketTile Class
  *  @author  Timothy Foster
  *  @version A.00
  *
  *  **************************************************************************/
-class FeGrassTile extends FeTile {
-    public static inline var REG_NAME = "grass";
+class FeForestTile extends FeTile {
+    public static inline var REG_NAME = "forest";
 
 /*  Constructor
  *  =========================================================================*/
@@ -23,7 +25,27 @@ class FeGrassTile extends FeTile {
 /*  Tile Properties
  *  =========================================================================*/
     override public function name():String
-        return "Field";
+        return "Forest";
+        
+    override public function def(?type:FeUnitType):Int
+        return 1;
+    
+    override public function avoid(?type:FeUnitType):Int
+        return 20;
+    
+    override public function hit(?type:FeUnitType):Int
+        return -5;
+    
+    override public function moveCost(type:FeUnitType):Float {
+        return switch(type) {
+            case FeUnitType.INFANTRY:       10.0;
+            case FeUnitType.LIGHT_INFANTRY: 10.0;
+            case FeUnitType.ARMORED:        FeC.NON_TRAVERSABLE;
+            case FeUnitType.MOUNTED:        FeC.NON_TRAVERSABLE;
+            case FeUnitType.FLYING:         1.0;
+            default: super.moveCost(type);
+        }
+    }
  
 /*  Public Methods
  *  =========================================================================*/

@@ -2,7 +2,8 @@ package emblemengine;
 
 import openfl.Assets;
 
-//import emblemengine.core.FeParams;
+import emblemengine.FeC;
+import emblemengine.core.FeParams;
 import emblemengine.map.FeTileReg;
 
 /** FeG Class
@@ -11,26 +12,30 @@ import emblemengine.map.FeTileReg;
  *
  *  **************************************************************************/
 class FeG {
-//    public static var params(default, null):FeParams;
+    public static var params(default, null):FeParams;
 
 /*  Initialization
  *  =========================================================================*/
     public static function init():Void {
         FeTileReg.init();
-    /*  
+        params = new FeParams();
         try {
-            params = FeParams.parse(Assets.getText("assets/data/params.ini"));
-            trace(params);
+            params.parse(Assets.getText(FeC.PATH_PARAMS));
         }
         catch (err:Dynamic) {
-            params = FeParams.parse(FeParams.FALLBACK_PARAMS);
+            params.parse(FeParams.FALLBACK_PARAMS);
         }
-    */
     }
     
 /*  Class Methods
  *  =========================================================================*/
-    
+    public static function notImplemented(cls:String, method:String, ?msg:String = ""):Void {
+        trace('$method in $cls not implemented: $msg');
+    }
+ 
+    public static function saveParams():Void {
+        notImplemented("FeG", "saveParams", "platform dependent");
+    }
  
 /*  Public Methods
  *  =========================================================================*/

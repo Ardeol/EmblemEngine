@@ -13,11 +13,15 @@ import emblemengine.FeC;
  *
  *  **************************************************************************/
 class FeMap extends FlxTypedSpriteGroup<FeTile> {
+    public var rows(default, null):Int;
+    public var cols(default, null):Int;
 
 /*  Constructor
  *  =========================================================================*/
-    public function new() {
+    public function new(rows:Int, cols:Int) {
         super();
+        this.rows = rows;
+        this.cols = cols;
     }
     
 /*  Class Methods
@@ -30,7 +34,7 @@ class FeMap extends FlxTypedSpriteGroup<FeTile> {
  *  @return A new FeMap
  */
     public static function build(width:Int, height:Int, tiles:Iterable<FeTile>):FeMap {
-        var map = new FeMap();
+        var map = new FeMap(height, width);
         var i:Int = 0;
         for (tile in tiles) {
             tile.x = FeG.params.int("DIMENSIONS.tilePixelWidth") * (i % width);
@@ -44,7 +48,9 @@ class FeMap extends FlxTypedSpriteGroup<FeTile> {
  
 /*  Public Methods
  *  =========================================================================*/
-    
+    public inline function tile(row:Int, col:Int):FeTile {
+        return members[cols * row + col];
+    }
  
 /*  Private Members
  *  =========================================================================*/

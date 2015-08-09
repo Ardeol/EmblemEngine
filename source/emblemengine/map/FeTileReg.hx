@@ -16,18 +16,18 @@ class FeTileReg {
     
 /**
  *  Initializes the tile registry.
+ * 
+ *  @TODO Build with a macro, based on all the classes in map.tiles?
  */
     public static function init():Void {
         if(!initialized) {
             registry = new Map< String, Class<FeTile> >();
             registry.set(FeGrassTile.REG_NAME, FeGrassTile);
             registry.set(FeFloorTile.REG_NAME, FeFloorTile);
-            
-        //  @TMP
-            registry.set("path", FeGrassTile);
-            registry.set("thicket", FeGrassTile);
-            registry.set("forest", FeGrassTile);
-            registry.set("mountain", FeGrassTile);
+            registry.set(FeThicketTile.REG_NAME, FeThicketTile);
+            registry.set(FeForestTile.REG_NAME, FeForestTile);
+            registry.set(FeMountainTile.REG_NAME, FeMountainTile);
+            registry.set(FePathTile.REG_NAME, FePathTile);
             
             initialized = true;
         }
