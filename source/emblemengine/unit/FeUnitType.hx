@@ -9,6 +9,7 @@ package emblemengine.unit;
     var INFANTRY = "infantry";
     var LIGHT_INFANTRY = "light_infantry";
     var ARMORED = "armored";
-    var MOUNTED = "mounted";
-    var FLYING = "flying";
+    var CALVARY = "calvary";
+    var PEGASUS = "pegasus";
+    var DRAGON  = "dragon";
 }

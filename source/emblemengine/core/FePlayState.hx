@@ -36,10 +36,6 @@ class FePlayState extends FlxState {
         
         hud = new FeHUD();
         add(hud);
-        var hudCam = new FlxCamera(570, 420, 60, 50);
-        hudCam.follow(hud.background);
-        hudCam.zoom = 1;
-        FlxG.cameras.add(hudCam);
         
         prevrow = 0;
         prevcol = 0;
@@ -52,22 +48,18 @@ class FePlayState extends FlxState {
 	override public function update():Void {
 		super.update();
         
-    /*
-        if (FlxG.mouse.justPressed) {
-            trace(map.tile(cursor.row, cursor.col).name());
-        }
-    */
-        if(cursor.row != prevrow || cursor.col != prevcol) {
+        if (cursor.row != prevrow || cursor.col != prevcol) {
+        //  @TODO Make more efficient??
+            if (cursor.getScreenXY().x > FlxG.width / 2)
+                hud.alignTileInfo(Southwest);
+            else
+                hud.alignTileInfo(Southeast);
             hud.showTileInfo(map.tile(cursor.row, cursor.col));
             prevrow = cursor.row;
             prevcol = cursor.col;
         }
 	}
     
-/*  Class Methods
- *  =========================================================================*/
-    
- 
 /*  Public Methods
  *  =========================================================================*/
     

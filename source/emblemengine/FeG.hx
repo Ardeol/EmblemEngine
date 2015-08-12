@@ -4,6 +4,7 @@ import openfl.Assets;
 
 import emblemengine.FeC;
 import emblemengine.core.FeParams;
+import emblemengine.core.FeKeybinds;
 import emblemengine.map.FeTileReg;
 
 /** FeG Class
@@ -13,6 +14,7 @@ import emblemengine.map.FeTileReg;
  *  **************************************************************************/
 class FeG {
     public static var params(default, null):FeParams;
+    public static var key(default, null):FeKeybinds;
 
 /*  Initialization
  *  =========================================================================*/
@@ -24,7 +26,9 @@ class FeG {
         }
         catch (err:Dynamic) {
             params.parse(FeParams.FALLBACK_PARAMS);
+            saveParams();
         }
+        key = new FeKeybinds(params);
     }
     
 /*  Class Methods

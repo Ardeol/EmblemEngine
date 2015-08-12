@@ -40,8 +40,9 @@ class FeThicketTile extends FeTile {
             case FeUnitType.INFANTRY:       3.0;
             case FeUnitType.LIGHT_INFANTRY: 3.0;
             case FeUnitType.ARMORED:        4.0;
-            case FeUnitType.MOUNTED:        4.0;
-            case FeUnitType.FLYING:         1.0;
+            case FeUnitType.CALVARY:        4.0;
+            case FeUnitType.PEGASUS:        1.0;
+            case FeUnitType.DRAGON:         1.0;
             default: super.moveCost(type);
         }
     }

@@ -41,8 +41,9 @@ class FeForestTile extends FeTile {
             case FeUnitType.INFANTRY:       10.0;
             case FeUnitType.LIGHT_INFANTRY: 10.0;
             case FeUnitType.ARMORED:        FeC.NON_TRAVERSABLE;
-            case FeUnitType.MOUNTED:        FeC.NON_TRAVERSABLE;
-            case FeUnitType.FLYING:         1.0;
+            case FeUnitType.CALVARY:        FeC.NON_TRAVERSABLE;
+            case FeUnitType.PEGASUS:        1.0;
+            case FeUnitType.DRAGON:         1.0;
             default: super.moveCost(type);
         }
     }

@@ -41,8 +41,9 @@ class FeMountainTile extends FeTile {
             case FeUnitType.INFANTRY:       12.0;
             case FeUnitType.LIGHT_INFANTRY: 12.0;
             case FeUnitType.ARMORED:        FeC.NON_TRAVERSABLE;
-            case FeUnitType.MOUNTED:        FeC.NON_TRAVERSABLE;
-            case FeUnitType.FLYING:         2.0;
+            case FeUnitType.CALVARY:        FeC.NON_TRAVERSABLE;
+            case FeUnitType.PEGASUS:        2.0;
+            case FeUnitType.DRAGON:         2.0;
             default: super.moveCost(type);
         }
     }

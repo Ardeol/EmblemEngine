@@ -2,7 +2,7 @@ package emblemengine;
 
 /** FeC Class
  *  @author  Timothy Foster
- *  @version A.00
+ *  @version A.00.15
  *
  *  Hardcoded values that are not intended to be modded directly.
  *  **************************************************************************/
@@ -13,4 +13,8 @@ class FeC {
     
     public static inline var PATH_PARAMS = "assets/data/params.ini";
     public static inline var PATH_CURSOR = "assets/images/display/cursor.png";
+    
+    public static inline var ALIGN_CENTER = "center";
+    public static inline var ALIGN_RIGHT  = "right";
+    public static inline var ALIGN_LEFT   = "left";
 }
